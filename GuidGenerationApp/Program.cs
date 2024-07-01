@@ -1,37 +1,34 @@
 ﻿using System;
-using TextCopy;
+using MyGuidGenerator;
+using MyUtcNow;
 
-namespace GuidGenerationApp
+namespace GuidAndUTCApp
 {
-    class Program
+    internal class Program
     {
-       static void Main(string[] args)
-       {
-            ShowWelcomeMessage();
-            
-            string yesOrNo = "";
-            do 
-            {
-                string StringGenerationGuid = Guid.NewGuid().ToString();
-
-                Console.WriteLine($"New Guid: {StringGenerationGuid}");
-                TextCopy.ClipboardService.SetText(StringGenerationGuid);
-                Console.WriteLine("Copied....\n");
-
-                Console.WriteLine("Do you want to continue? (yes / no)");
-                yesOrNo = Console.ReadLine();
-                Console.WriteLine();
-
-            } while (yesOrNo.ToLower() == "yes" | yesOrNo.ToLower() == "y");
-
-            Console.WriteLine("Thank you for using our program");
-            Console.ReadKey();
-       }
-
-        static void ShowWelcomeMessage() 
+        static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the project GUID Generator!!!");
-            Console.WriteLine("Each time you type 'yes' or 'y', a new GUID is generated and copied to your clipboard\n");
+            Console.WriteLine("Hello and welcome to GUID generator and UTC ! ");
+            Console.WriteLine("For new guid select \"1\" ");
+            Console.WriteLine("For UTC now select \"2\" ");
+            string userInput = Console.ReadLine();
+            int value = Convert.ToInt32(userInput);
+
+            switch (value)
+            {
+                case 1:
+                    GuidGenerator guid = new GuidGenerator();
+                    guid.GenerateGuid();
+                    break;
+                case 2:
+                    DateFinder dateFinder = new DateFinder();
+                    dateFinder.FindUtcNow();
+                    break;
+                default:
+                    Console.WriteLine("Run the project again");
+                    break;
+            }
+
         }
     }
 }
