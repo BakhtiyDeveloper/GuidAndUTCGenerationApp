@@ -1,4 +1,4 @@
-> # GuidGenerationApp
+> # GuidAndUTCGenerationApp
 
 ### Welcome to the GUID Generator!
 ----------------------------------------
